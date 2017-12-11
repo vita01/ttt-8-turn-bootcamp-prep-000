@@ -43,14 +43,15 @@ def input_to_index(num)
 else return -1
 end
 end
+
 def turn(board)
     puts "Please enter 1-9:"
     input = gets
-    if (valid_move?(board, input))
+    if (valid_move?(board, input_to_index(input)))
         move(board, input)
         display_board(board)
     else
-        if (!(valid_move?(board, input)))
+        if (!(valid_move?(board,input_to_index(input)))
             turn(board)
         end
     end
