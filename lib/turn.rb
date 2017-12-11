@@ -38,7 +38,10 @@ end
 
 # player turn
 def input_to_index(num)
+  if num.is_number?
   return num.to_i
+else return false
+end
 end
 def turn(board)
     puts "Please enter 1-9:"
