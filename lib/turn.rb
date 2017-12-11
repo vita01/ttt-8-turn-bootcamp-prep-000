@@ -38,9 +38,9 @@ end
 
 # player turn
 def input_to_index(num)
-  if num.is_number?
+  if num.to_i.is_number?
   return num.to_i
-else return false
+else return -1
 end
 end
 def turn(board)
