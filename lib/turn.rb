@@ -37,6 +37,9 @@ def position_taken?(board, position)
 end
 
 # player turn
+def input_to_index(num)
+  return num.to_i
+end
 def turn(board)
     puts "Please enter 1-9:"
     input = gets
