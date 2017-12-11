@@ -39,7 +39,7 @@ end
 # player turn
 def input_to_index(num)
   if num.to_i
-  return num.to_i
+  return num.to_i-1
 else return -1
 end
 end
