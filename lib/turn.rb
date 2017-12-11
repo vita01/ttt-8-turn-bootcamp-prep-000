@@ -1,58 +1,47 @@
-# display current state of board
 def display_board(board)
-    puts " #{board[0]} | #{board[1]} | #{board[2]} "
-    puts "-----------"
-    puts " #{board[3]} | #{board[4]} | #{board[5]} "
-    puts "-----------"
-    puts " #{board[6]} | #{board[7]} | #{board[8]} "
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-# make a move
-def move(board, position, token = "X")
-    position = position.to_i
-    board[position - 1] = token
+# code your conversion of the user input to the proper index value
+def input_to_index(user_input)
+  user_input.to_i - 1
 end
 
-# check if valid move
-def valid_move?(board, position)
-    position = position.to_i
-    if (position.between?(1, 9))
-        if (position_taken?(board, position))
-            return false
-        else
-            return true
-        end
-    else
-        return false
-    end
+# code your #valid_move? method here
+def valid_move?(board, index)
+  if position_taken?(board, index) == false && (index).between?(0, 8) == true
+    return true
+  else false
+  end
 end
 
-# check if position is taken
-def position_taken?(board, position)
-    if ((board[position - 1] == "X") || (board[position - 1] == "O"))
-        return true
-    else
-        return false
-    end
+# re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
+def position_taken?(board, index)
+  if board[index] == " " || board[index] == "" || board[index] == nil
+    return false
+  else return true
+  end
 end
 
-# player turn
-def input_to_index(num)
-  if num.to_i
-  return num.to_i-1
-else return -1
-end
+def move(board, index, character = "X")
+  board[index] = character
 end
 
+#code the method to create a procedure to make a turn in the game
 def turn(board)
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  until valid_move?(board, index) == true
+    puts "please try a valid move. Use an empty location 1 through 9"
     puts "Please enter 1-9:"
-    input = gets
-    if (valid_move?(board, input_to_index(input)))
-        move(board, input)
-        display_board(board)
-    else
-        if (!(valid_move?(board,input_to_index(input)))
-            turn(board)
-        end
-    end
+    user_input = gets.strip
+    index = input_to_index(user_input)
+  end
+  move(board, index, character = "X")
+  display_board(board)
 end
